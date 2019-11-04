@@ -8,11 +8,12 @@ class Repository {
     newsDbProvider,
     NewsApiProvider(),
   ];
-
   List<Cache> caches = <Cache>[
     newsDbProvider,
   ];
 
+  // Iterate over sources when dbprovider
+  // get fetchTopIds implemented
   Future<List<int>> fetchTopIds() {
     return sources[1].fetchTopIds();
   }

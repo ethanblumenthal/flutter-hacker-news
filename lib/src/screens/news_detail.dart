@@ -47,13 +47,8 @@ class NewsDetail extends StatelessWidget {
   Widget buildList(ItemModel item, Map<int, Future<ItemModel>> itemMap) {
     final children = <Widget>[];
     children.add(buildTitle(item));
-
     final commentsList = item.kids.map((kidId) {
-      return Comment(
-        itemId: kidId,
-        itemMap: itemMap,
-        depth: 0,
-      );
+      return Comment(itemId: kidId, itemMap: itemMap, depth: 0);
     }).toList();
     children.addAll(commentsList);
 

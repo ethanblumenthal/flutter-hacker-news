@@ -1,4 +1,3 @@
-import 'package:news/src/resources/news_api_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -20,7 +19,7 @@ class NewsDbProvider implements Source, Cache {
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, 'items.db');
+    final path = join(documentsDirectory.path, "items4.db");
     db = await openDatabase(
       path,
       version: 1,
@@ -35,7 +34,7 @@ class NewsDbProvider implements Source, Cache {
               text TEXT,
               parent INTEGER,
               kids BLOB,
-              dead INTEGER, 0 == false, 1 == true,
+              dead INTEGER,
               deleted INTEGER,
               url TEXT,
               score INTEGER,
@@ -49,9 +48,9 @@ class NewsDbProvider implements Source, Cache {
 
   Future<ItemModel> fetchItem(int id) async {
     final maps = await db.query(
-      'Items',
+      "Items",
       columns: null,
-      where: 'id = ?',
+      where: "id = ?",
       whereArgs: [id],
     );
 
@@ -64,14 +63,14 @@ class NewsDbProvider implements Source, Cache {
 
   Future<int> addItem(ItemModel item) {
     return db.insert(
-      'Items',
+      "Items",
       item.toMap(),
       conflictAlgorithm: ConflictAlgorithm.ignore,
     );
   }
 
   Future<int> clear() {
-    return db.delete('Items');
+    return db.delete("Items");
   }
 }
 

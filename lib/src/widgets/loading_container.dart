@@ -8,7 +8,7 @@ class LoadingContainer extends StatelessWidget {
           title: buildContainer(),
           subtitle: buildContainer(),
         ),
-        Divider(),
+        Divider(height: 8.0),
       ],
     );
   }
